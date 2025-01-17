@@ -21,13 +21,6 @@ if(NOT DEFINED OBS_VERSION_OVERRIDE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git
     set(_obs_version "3.1.1") # Fallback to default version
   endif()
 
-try {
-    $Version = & git describe --tags --long
-} catch {
-    Write-Warning "git describe failed. Falling back to default version."
-    $Version = "v3.1.1-0"
-}
-
   if(_obs_version_result EQUAL 0)
     string(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+).*" "\\1;\\2;\\3" _obs_version_canonical ${_obs_version})
     set(_obs_version_canonical "3;1;1") # Default canonical version

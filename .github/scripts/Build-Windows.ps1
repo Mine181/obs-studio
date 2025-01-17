@@ -87,3 +87,5 @@ function Build {
     Pop-Location -Stack BuildTemp
     Log-Group
 }
+
+Build

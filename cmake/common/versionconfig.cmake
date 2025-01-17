@@ -18,10 +18,12 @@ if(NOT DEFINED OBS_VERSION_OVERRIDE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git
 
   if(_git_describe_err)
     message(FATAL_ERROR "Could not fetch OBS version tag from git.\n" ${_git_describe_err})
+    set(_obs_version "1.0.0") # Fallback to default version
   endif()
 
   if(_obs_version_result EQUAL 0)
     string(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+).*" "\\1;\\2;\\3" _obs_version_canonical ${_obs_version})
+    set(_obs_version_canonical "1;0;0") # Default canonical version
   endif()
 elseif(DEFINED OBS_VERSION_OVERRIDE)
   if(OBS_VERSION_OVERRIDE MATCHES "([0-9]+)\\.([0-9]+)\\.([0-9]+).*")

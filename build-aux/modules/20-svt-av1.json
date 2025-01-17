@@ -17,9 +17,9 @@
     "sources": [
         {
             "type": "git",
-            "url": "https://gitlab.com/AOMediaCodec/SVT-AV1.git",
-            "tag": "v2.2.1",
-            "commit": "55a01def732bb9e7016d23cc512384f7a88d6e86"
+            "url": "https://github.com/psy-ex/svt-av1-psy",
+            "tag": "v2.3.0-A",
+            "commit": "f560b40c1de42f1ca3ea35f575be4cfc24083dcc"
         }
     ]
 }

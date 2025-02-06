@@ -83,6 +83,10 @@ void cleanBackupCollision(const OBSSceneCollection &collection)
 
 void OBSBasic::SetupNewSceneCollection(const std::string &collectionName)
 {
+	if (collectionName.empty()) {
+		throw std::logic_error("Cannot create new scene collection with empty collection name");
+	}
+
 	const OBSSceneCollection &newCollection = CreateSceneCollection(collectionName);
 
 	OnEvent(OBS_FRONTEND_EVENT_SCENE_COLLECTION_CHANGING);
@@ -356,7 +360,7 @@ void OBSBasic::RefreshSceneCollections(bool refreshCache)
 
 	ui->actionRemoveSceneCollection->setEnabled(numAddedCollections > 1);
 
-	OBSBasic *main = reinterpret_cast<OBSBasic *>(App()->GetMainWindow());
+	OBSBasic *main = OBSBasic::Get();
 
 	main->ui->actionPasteFilters->setEnabled(false);
 	main->ui->actionPasteRef->setEnabled(false);
@@ -390,12 +394,12 @@ void OBSBasic::RefreshSceneCollectionCache()
 			obs_data_create_from_json_file_safe(entry.path().u8string().c_str(), "bak");
 
 		std::string candidateName;
-		const char *collectionName = obs_data_get_string(collectionData, "name");
+		std::string collectionName = obs_data_get_string(collectionData, "name");
 
-		if (!collectionName) {
-			candidateName = entry.path().filename().u8string();
+		if (collectionName.empty()) {
+			candidateName = entry.path().stem().u8string();
 		} else {
-			candidateName = collectionName;
+			candidateName = std::move(collectionName);
 		}
 
 		foundCollections.try_emplace(candidateName,
@@ -1275,7 +1279,6 @@ retryScene:
 
 		if (savedProjectors) {
 			LoadSavedProjectors(savedProjectors);
-			OpenSavedProjectors();
 			activateWindow();
 		}
 	}

@@ -18,8 +18,8 @@
         {
             "type": "git",
             "url": "https://github.com/psy-ex/svt-av1-psy",
-            "tag": "v2.3.0-A",
-            "commit": "7e412a4244d094d141862fca44b6bf1b7e37b7e0"
+            "tag": "v2.3.0-B",
+            "commit": "ec65071b65ee70078229182ce6e1d0f6a4aa1a47"
         }
     ]
 }

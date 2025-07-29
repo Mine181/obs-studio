@@ -17,9 +17,9 @@
     "sources": [
         {
             "type": "git",
-            "url": "https://gitlab.com/AOMediaCodec/SVT-AV1.git",
-            "tag": "v3.0.2",
-            "commit": "efc905a7c2ed155b3654d7968173622734eeb0c0"
+            "url": "https://github.com/juliobbv-p/svt-av1-hdr",
+            "tag": "v3.1.0",
+            "commit": "8c1f112a47282209469faa0aaa6250051a13fbc3"
         }
     ]
 }
